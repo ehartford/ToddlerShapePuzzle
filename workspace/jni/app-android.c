@@ -69,6 +69,14 @@ Java_com_StobDaoura_ToddlerShapePuzzle_DemoGLSurfaceView_nativePause( JNIEnv*  e
     }
 }
 
+/* Touch input
+ */
+void
+Java_com_StobDaoura_ToddlerShapePuzzle_DemoGLSurfaceView_nativeOnTouch( JNIEnv*  env, jobject  thiz, jfloat x, jfloat y )
+{
+	__android_log_print(ANDROID_LOG_INFO, "ToddlerShapePuzzle", "ontouch x=%f y=%f", x, y);
+}
+
 /* Call to render the next GL frame */
 void
 Java_com_StobDaoura_ToddlerShapePuzzle_DemoRenderer_nativeRender( JNIEnv*  env )

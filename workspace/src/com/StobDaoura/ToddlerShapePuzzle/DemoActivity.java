@@ -88,11 +88,13 @@ class DemoGLSurfaceView extends GLSurfaceView {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             nativePause();
         }
+        nativeOnTouch(event.getX(0), event.getY(0));
         return true;
     }
 
     DemoRenderer mRenderer;
 
+    private static native void nativeOnTouch(float x, float y);
     private static native void nativePause();
 }
 
