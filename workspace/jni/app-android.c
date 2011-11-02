@@ -10,10 +10,8 @@ int   gAppAlive   = 1;
 
 static int  sWindowWidth  = 320;
 static int  sWindowHeight = 480;
-static int  sDemoStopped  = 0;
 static long sTimeOffset   = 0;
 static int  sTimeOffsetInit = 0;
-static long sTimeStopped  = 0;
 
 static long
 _getTime(void)
@@ -31,7 +29,6 @@ Java_com_StobDaoura_ToddlerShapePuzzle_DemoRenderer_nativeInit( JNIEnv*  env )
     importGLInit();
     appInit();
     gAppAlive    = 1;
-    sDemoStopped = 0;
     sTimeOffsetInit = 0;
 }
 
@@ -57,16 +54,7 @@ Java_com_StobDaoura_ToddlerShapePuzzle_DemoRenderer_nativeDone( JNIEnv*  env )
 void
 Java_com_StobDaoura_ToddlerShapePuzzle_DemoGLSurfaceView_nativePause( JNIEnv*  env )
 {
-    sDemoStopped = !sDemoStopped;
-    if (sDemoStopped) {
-        /* we paused the animation, so store the current
-         * time in sTimeStopped for future nativeRender calls */
-        sTimeStopped = _getTime();
-    } else {
-        /* we resumed the animation, so adjust the time offset
-         * to take care of the pause interval. */
-        sTimeOffset -= _getTime() - sTimeStopped;
-    }
+
 }
 
 /* Touch input
@@ -81,21 +69,12 @@ Java_com_StobDaoura_ToddlerShapePuzzle_DemoGLSurfaceView_nativeOnTouch( JNIEnv* 
 void
 Java_com_StobDaoura_ToddlerShapePuzzle_DemoRenderer_nativeRender( JNIEnv*  env )
 {
-    long   curTime;
-
-    /* NOTE: if sDemoStopped is TRUE, then we re-render the same frame
-     *       on each iteration.
-     */
-    if (sDemoStopped) {
-        curTime = sTimeStopped + sTimeOffset;
-    } else {
-        curTime = _getTime() + sTimeOffset;
-        if (sTimeOffsetInit == 0) {
-            sTimeOffsetInit = 1;
-            sTimeOffset     = -curTime;
-            curTime         = 0;
-        }
-    }
+    long   curTime = _getTime() + sTimeOffset;
+	if (sTimeOffsetInit == 0) {
+		sTimeOffsetInit = 1;
+		sTimeOffset     = -curTime;
+		curTime         = 0;
+	}
 
     //__android_log_print(ANDROID_LOG_INFO, "ToddlerShapePuzzle", "curTime=%ld", curTime);
 

@@ -701,48 +701,48 @@ static void gluLookAt(GLfloat eyex, GLfloat eyey, GLfloat eyez,
 
 static void camTrack()
 {
-    float lerp[5];
-    float eX, eY, eZ, cX, cY, cZ;
-    float trackPos;
-    CAMTRACK *cam;
-    long currentCamTick;
-    int a;
+    //float lerp[5];
+    //float eX, eY, eZ, cX, cY, cZ;
+    //float trackPos;
+    //CAMTRACK *cam;
+    //long currentCamTick;
+    //int a;
 
-    if (sNextCamTrackStartTick <= sTick)
-    {
-        ++sCurrentCamTrack;
-        sCurrentCamTrackStartTick = sNextCamTrackStartTick;
-    }
-    sNextCamTrackStartTick = sCurrentCamTrackStartTick +
-                             sCamTracks[sCurrentCamTrack].len * CAMTRACK_LEN;
+    ////if (sNextCamTrackStartTick <= sTick)
+    //{
+    //    ++sCurrentCamTrack;
+    //    sCurrentCamTrackStartTick = sNextCamTrackStartTick;
+   // }
+   // sNextCamTrackStartTick = sCurrentCamTrackStartTick +
+   //                          sCamTracks[sCurrentCamTrack].len * CAMTRACK_LEN;
 
-    cam = &sCamTracks[sCurrentCamTrack];
-    currentCamTick = sTick - sCurrentCamTrackStartTick;
-    trackPos = (float)currentCamTick / (CAMTRACK_LEN * cam->len);
+   // cam = &sCamTracks[sCurrentCamTrack];
+   // currentCamTick = sTick - sCurrentCamTrackStartTick;
+   // trackPos = (float)currentCamTick / (CAMTRACK_LEN * cam->len);
 
-    for (a = 0; a < 5; ++a)
-        lerp[a] = (cam->src[a] + cam->dest[a] * trackPos) * 0.01f;
+  //  for (a = 0; a < 5; ++a)
+    //    lerp[a] = (cam->src[a] + cam->dest[a] * trackPos) * 0.01f;
 
-    if (cam->dist)
-    {
-        float dist = cam->dist * 0.1f;
-        cX = lerp[0];
-        cY = lerp[1];
-        cZ = lerp[2];
-        eX = cX - (float)cos(lerp[3]) * dist;
-        eY = cY - (float)sin(lerp[3]) * dist;
-        eZ = cZ - lerp[4];
-    }
-    else
-    {
-        eX = lerp[0];
-        eY = lerp[1];
-        eZ = lerp[2];
-        cX = eX + (float)cos(lerp[3]);
-        cY = eY + (float)sin(lerp[3]);
-        cZ = eZ + lerp[4];
-    }
-    gluLookAt(eX, eY, eZ, cX, cY, cZ, 0, 0, 1);
+   // if (cam->dist)
+   // {
+   //     float dist = cam->dist * 0.1f;
+   //     cX = lerp[0];
+   //     cY = lerp[1];
+   //     cZ = lerp[2];
+   //     eX = cX - (float)cos(lerp[3]) * dist;
+   //     eY = cY - (float)sin(lerp[3]) * dist;
+   //     eZ = cZ - lerp[4];
+   // }
+   // else
+   // {
+   //     eX = lerp[0];
+   //     eY = lerp[1];
+   //     eZ = lerp[2];
+   //     cX = eX + (float)cos(lerp[3]);
+   //     cY = eY + (float)sin(lerp[3]);
+   //     cZ = eZ + lerp[4];
+   // }
+    gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
 }
 
 
@@ -761,11 +761,11 @@ void appRender(long tick, int width, int height)
     sTick = (sTick + tick - sStartTick) >> 1;
 
     // Terminate application after running through the demonstration once.
-    if (sTick >= RUN_LENGTH)
-    {
-        gAppAlive = 0;
-        return;
-    }
+    //if (sTick >= RUN_LENGTH)
+   // {
+    //    gAppAlive = 0;
+    //    return;
+   // }
 
     // Prepare OpenGL ES for rendering of the frame.
     prepareFrame(width, height);
