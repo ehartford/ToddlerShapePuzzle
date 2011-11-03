@@ -31,11 +31,9 @@
 
 #include "app.h"
 #include "shapes.h"
-#include "cams.h"
-
 
 // Total run length is 20 * camera track base unit length (see cams.h).
-#define RUN_LENGTH  (20 * CAMTRACK_LEN)
+
 #undef PI
 #define PI 3.1415926535897932f
 #define RANDOM_UINT_MAX 65535
@@ -88,10 +86,6 @@ typedef struct {
 
 static long sStartTick = 0;
 static long sTick = 0;
-
-static int sCurrentCamTrack = 0;
-static long sCurrentCamTrackStartTick = 0;
-static long sNextCamTrackStartTick = 0x7fffffff;
 
 static GLOBJECT *sSuperShapeObjects[SUPERSHAPE_COUNT] = { NULL };
 static GLOBJECT *sGroundPlane = NULL;
@@ -412,53 +406,6 @@ static void drawGroundPlane()
 }
 
 
-static void drawFadeQuad()
-{
-    static const GLfixed quadVertices[] = {
-        -0x10000, -0x10000,
-         0x10000, -0x10000,
-        -0x10000,  0x10000,
-         0x10000, -0x10000,
-         0x10000,  0x10000,
-        -0x10000,  0x10000
-    };
-
-    const int beginFade = sTick - sCurrentCamTrackStartTick;
-    const int endFade = sNextCamTrackStartTick - sTick;
-    const int minFade = beginFade < endFade ? beginFade : endFade;
-
-    if (minFade < 1024)
-    {
-        const GLfixed fadeColor = minFade << 6;
-        glColor4x(fadeColor, fadeColor, fadeColor, 0);
-
-        glDisable(GL_DEPTH_TEST);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_ZERO, GL_SRC_COLOR);
-        glDisable(GL_LIGHTING);
-
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-
-        glDisableClientState(GL_COLOR_ARRAY);
-        glDisableClientState(GL_NORMAL_ARRAY);
-        glVertexPointer(2, GL_FIXED, 0, quadVertices);
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-
-        glEnableClientState(GL_COLOR_ARRAY);
-
-        glMatrixMode(GL_MODELVIEW);
-
-        glEnable(GL_LIGHTING);
-        glDisable(GL_BLEND);
-        glEnable(GL_DEPTH_TEST);
-    }
-}
-
-
 // Called from the app framework.
 void appInit()
 {
@@ -698,54 +645,6 @@ static void gluLookAt(GLfloat eyex, GLfloat eyey, GLfloat eyez,
                  (GLfixed)(-eyez * 65536));
 }
 
-
-static void camTrack()
-{
-    //float lerp[5];
-    //float eX, eY, eZ, cX, cY, cZ;
-    //float trackPos;
-    //CAMTRACK *cam;
-    //long currentCamTick;
-    //int a;
-
-    ////if (sNextCamTrackStartTick <= sTick)
-    //{
-    //    ++sCurrentCamTrack;
-    //    sCurrentCamTrackStartTick = sNextCamTrackStartTick;
-   // }
-   // sNextCamTrackStartTick = sCurrentCamTrackStartTick +
-   //                          sCamTracks[sCurrentCamTrack].len * CAMTRACK_LEN;
-
-   // cam = &sCamTracks[sCurrentCamTrack];
-   // currentCamTick = sTick - sCurrentCamTrackStartTick;
-   // trackPos = (float)currentCamTick / (CAMTRACK_LEN * cam->len);
-
-  //  for (a = 0; a < 5; ++a)
-    //    lerp[a] = (cam->src[a] + cam->dest[a] * trackPos) * 0.01f;
-
-   // if (cam->dist)
-   // {
-   //     float dist = cam->dist * 0.1f;
-   //     cX = lerp[0];
-   //     cY = lerp[1];
-   //     cZ = lerp[2];
-   //     eX = cX - (float)cos(lerp[3]) * dist;
-   //     eY = cY - (float)sin(lerp[3]) * dist;
-   //     eZ = cZ - lerp[4];
-   // }
-   // else
-   // {
-   //     eX = lerp[0];
-   //     eY = lerp[1];
-   //     eZ = lerp[2];
-   //     cX = eX + (float)cos(lerp[3]);
-   //     cY = eY + (float)sin(lerp[3]);
-   //     cZ = eZ + lerp[4];
-   // }
-    gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
-}
-
-
 // Called from the app framework.
 /* The tick is current time in milliseconds, width and height
  * are the image dimensions to be rendered.
@@ -760,33 +659,18 @@ void appRender(long tick, int width, int height)
     // Actual tick value is "blurred" a little bit.
     sTick = (sTick + tick - sStartTick) >> 1;
 
-    // Terminate application after running through the demonstration once.
-    //if (sTick >= RUN_LENGTH)
-   // {
-    //    gAppAlive = 0;
-    //    return;
-   // }
-
     // Prepare OpenGL ES for rendering of the frame.
     prepareFrame(width, height);
 
     // Update the camera position and set the lookat.
-    camTrack();
+    gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
 
     // Configure environment.
     configureLightAndMaterial();
-
-    // Draw the reflection by drawing models with negated Z-axis.
-    glPushMatrix();
-    drawModels(-1);
-    glPopMatrix();
 
     // Blend the ground plane to the window.
     drawGroundPlane();
 
     // Draw all the models normally.
     drawModels(1);
-
-    // Draw fade quad over whole window (when changing cameras).
-    drawFadeQuad();
 }
