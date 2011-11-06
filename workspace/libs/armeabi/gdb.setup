@@ -1,2 +1,2 @@
 set solib-search-path C:/ToddlerShapePuzzle/workspace/obj/local/armeabi
-directory C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include C:/Android/android-ndk-r6b/sources/cxx-stl/system C:/ToddlerShapePuzzle/workspace/jni
+directory C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++ C:/ToddlerShapePuzzle/workspace/jni/../jni C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/libs/armeabi/include

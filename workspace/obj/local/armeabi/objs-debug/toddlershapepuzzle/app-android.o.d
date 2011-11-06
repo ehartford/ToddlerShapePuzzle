@@ -1,5 +1,5 @@
 /cygdrive/c/ToddlerShapePuzzle/workspace/obj/local/armeabi/objs-debug/toddlershapepuzzle/app-android.o: \
- /cygdrive/c/ToddlerShapePuzzle/workspace/jni/app-android.c \
+ /cygdrive/c/ToddlerShapePuzzle/workspace/jni/../jni/app-android.c \
  /cygdrive/c/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/jni.h \
  /cygdrive/c/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/time.h \
  /cygdrive/c/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/cdefs.h \
