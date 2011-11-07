@@ -60,9 +60,9 @@ Java_com_StobDaoura_ToddlerShapePuzzle_DemoGLSurfaceView_nativePause( JNIEnv*  e
 /* Touch input
  */
 void
-Java_com_StobDaoura_ToddlerShapePuzzle_DemoGLSurfaceView_nativeOnTouch( JNIEnv*  env, jobject  thiz, jfloat x, jfloat y )
+Java_com_StobDaoura_ToddlerShapePuzzle_DemoGLSurfaceView_nativeOnTouch( JNIEnv*  env, jobject  thiz, jint action, jint index, jfloat x1, jfloat y1, jfloat x2, jfloat y2)
 {
-	__android_log_print(ANDROID_LOG_INFO, "ToddlerShapePuzzle", "ontouch x=%f y=%f", x, y);
+	__android_log_print(ANDROID_LOG_INFO, "ToddlerShapePuzzle", "ontouch x=%f y=%f", x1, y1);
 }
 
 /* Call to render the next GL frame */

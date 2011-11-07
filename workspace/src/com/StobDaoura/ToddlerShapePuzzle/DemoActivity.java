@@ -92,18 +92,40 @@ class DemoGLSurfaceView extends GLSurfaceView {
         mRenderer = new DemoRenderer();
         setRenderer(mRenderer);
     }
-
+    
+    long lasttime = 0;
     public boolean onTouchEvent(final MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            nativePause();
-        }
-        nativeOnTouch(event.getX(0), event.getY(0));
+    	
+    	// make it so move events only get through a max of 20 times a second, but down and up always get through.
+    	if(event.getAction() == MotionEvent.ACTION_MOVE)
+    	{	
+    		long time = System.nanoTime();
+    		if(lasttime == 0) lasttime = time;
+    		long diff = time - lasttime;
+    		if(diff < 50000) return true;
+    		lasttime = time;
+    	}
+    	
+    	float x1=0.0f, y1=0.0f;
+    	if(event.getPointerCount() > 0)
+    	{
+    		x1 = event.getX(0);
+    		y1 = event.getY(0);
+    	}
+    	float x2=0.0f, y2=0.0f;
+    	if(event.getPointerCount() > 1)
+    	{
+    		x2 = event.getX(1);
+    		y2 = event.getY(1);
+    	}
+    	
+        nativeOnTouch(event.getActionMasked(), event.getActionIndex(), x1, y1, x2, y2);
         return true;
     }
 
     DemoRenderer mRenderer;
 
-    private static native void nativeOnTouch(float x, float y);
+    private static native void nativeOnTouch(int action, int index, float x1, float y1, float x2, float y2);
     private static native void nativePause();
 }
 
