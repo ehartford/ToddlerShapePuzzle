@@ -1,0 +1,41 @@
+C:/ToddlerShapePuzzle/workspace/obj/local/armeabi/objs-debug/toddlershapepuzzle/objload.o: \
+ C:/ToddlerShapePuzzle/workspace/jni/../jni/objload.cpp \
+ C:/ToddlerShapePuzzle/workspace/jni/../jni/objload.h \
+ C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/GLES/gl.h \
+ C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/GLES/glplatform.h \
+ C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/KHR/khrplatform.h \
+ C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/stdint.h \
+ C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/_types.h \
+ C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/machine/_types.h \
+ C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/fstream \
+ C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/set \
+ C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/map \
+ C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/vector \
+ C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/iostream \
+ C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/math.h
+
+C:/ToddlerShapePuzzle/workspace/jni/../jni/objload.h:
+
+C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/GLES/gl.h:
+
+C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/GLES/glplatform.h:
+
+C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/KHR/khrplatform.h:
+
+C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/stdint.h:
+
+C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/_types.h:
+
+C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/machine/_types.h:
+
+C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/fstream:
+
+C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/set:
+
+C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/map:
+
+C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/vector:
+
+C:/Android/android-ndk-r6b/sources/cxx-stl/gnu-libstdc++/include/iostream:
+
+C:/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/math.h:
