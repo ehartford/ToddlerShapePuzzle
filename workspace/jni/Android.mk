@@ -11,7 +11,6 @@ LOCAL_SRC_FILES := \
     importgl.c \
     demo.c \
     app-android.c \
-	objload.cpp \
 	Box2D/Collision/b2BroadPhase.cpp \
 	Box2D/Collision/b2CollideCircle.cpp \
 	Box2D/Collision/b2CollideEdge.cpp \

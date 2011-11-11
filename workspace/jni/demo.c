@@ -32,6 +32,8 @@
 #include "app.h"
 #include "shapes.h"
 
+#import "Models/arc.h"
+
 // Total run length is 20 * camera track base unit length (see cams.h).
 
 #undef PI
@@ -673,4 +675,12 @@ void appRender(long tick, int width, int height)
 
     // Draw all the models normally.
     drawModels(1);
+
+
+	// set input data to arrays
+	//glVertexPointer(3, GL_FLOAT, 0, arcVerts);
+	//glNormalPointer(GL_FLOAT, 0, arcNormals);
+
+	// draw data
+	//glDrawArrays(GL_TRIANGLES, 0, arcNumVerts);
 }

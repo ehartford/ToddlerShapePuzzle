@@ -33,7 +33,8 @@
  /cygdrive/c/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/GLES/glplatform.h \
  /cygdrive/c/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/KHR/khrplatform.h \
  /cygdrive/c/ToddlerShapePuzzle/workspace/jni/../jni/app.h \
- /cygdrive/c/ToddlerShapePuzzle/workspace/jni/../jni/shapes.h
+ /cygdrive/c/ToddlerShapePuzzle/workspace/jni/../jni/shapes.h \
+ /cygdrive/c/ToddlerShapePuzzle/workspace/jni/../jni/Models/arc.h
 
 /cygdrive/c/Android/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/stdlib.h:
 
@@ -102,3 +103,5 @@
 /cygdrive/c/ToddlerShapePuzzle/workspace/jni/../jni/app.h:
 
 /cygdrive/c/ToddlerShapePuzzle/workspace/jni/../jni/shapes.h:
+
+/cygdrive/c/ToddlerShapePuzzle/workspace/jni/../jni/Models/arc.h:
